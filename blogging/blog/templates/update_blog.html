@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+<html>
+<body>
+{% block content %}
+
+{% if user.is_authenticated %}
+{% if user.id == member.author.id %}
+<h1>Update {{ member.title }}</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{ form.media }}
+
+    <button class="btn btn-success">submit</button>
+
+</form>
+{% else %}
+<h5>you are not to edit this post because you're the author </h5>
+{% endif %}
+{% endif %}
+{%endblock%}
+</body>
+</html>

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+<html>
+<body>
+{% block content %}
+<h1>User Profile</h1>
+
+<h5>My social media handles </h5>
+        {% if user_profile.facebook  %}
+    <i class="fa-brands fa-facebook"></i>
+        <a href="{{ user_profile.facebook }}"><i class="bi bi-facebook"></i></a>
+        {% endif %}
+
+        {% if user_profile.twitter  %}
+         |<a href="{{ user_profile.twitter }}"><i class="bi bi-twitter"></i></a>
+        {% endif %}
+
+        {% if user_profile.instagram  %}
+         |<a href="{{ user_profile.instagram }}"><i class="bi bi-instagram"></i></a>
+        {% endif %}
+
+<br/><br/>
+
+ <div class="card" style="width: 18rem;">
+  <img class="card-img-top"
+       src="{{ user_profile.profile_image.url}}" width=100 height=200>
+  <div class="card-body">
+    <p class="card-text"> {{ user.profile.bio }}.</p>
+  </div>
+</div>
+{% endblock %}
+</body>
+</html>

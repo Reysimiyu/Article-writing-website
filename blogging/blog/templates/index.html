@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+<html>
+<body>
+{% block content %}
+<h1>Article writing</h1>
+
+{% for member in object_list %}
+
+{{ member.author }}- <a href="{% url 'post_detail' member.pk %}" >{{ member.title }}</a><br/>
+Post Category: {{ member.category }}</a></br>
+posted on:{{ member.post_date }}<br/>
+{{ member.snippet }}<br/>
+
+{% if user.is_authenticated %}
+    {% if user.id == member.author.id %}
+ <i class="fa-brands fa-facebook"></i>
+        <a href="{% url 'update_blog' member.pk %}" >Update</a>
+        <a href="{% url 'delete_blog' member.pk %}" >Delete</a><br/>
+    {% endif %}
+{% endif %}
+<hr>
+
+{% endfor %}
+
+{% endblock %}
+</body>
+</html>

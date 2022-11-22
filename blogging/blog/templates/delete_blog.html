@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+<html>
+<body>
+{% block content %}
+{% if user.is_authenticated %}
+{% if user.id == member.author.id %}
+<h1>Delete {{ member.title }}?</h1>
+<form method="post">
+    {% csrf_token %}
+
+    <button class="btn btn-danger">Delete</button>
+    <a href="{% url 'home' %}" >Back</a>
+
+</form>
+{% else %}
+<p>you can't delete this post because you are the author</p>
+{% endif %}
+{% endif %}
+{%endblock%}
+</body>
+</html>

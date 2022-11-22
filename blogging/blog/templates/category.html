@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+<html>
+<body>
+{% block content %}
+<h1>{{ cats }}</h1>
+
+{% for member in category_posts %}
+
+posted on:{{ member.post_date }}<br/>
+{{ member.body|safe }}<br/>
+{% if user.is_authenticated %}
+{% if user.id == member.author.id %}
+<a href="{% url 'update_blog' member.pk %}" >Update</a>
+<a href="{% url 'delete_blog' member.pk %}" >Delete</a><br/>
+{% endif %}
+{% endif %}
+<hr>
+
+{% endfor %}
+
+{% endblock %}
+</body>
+</html>

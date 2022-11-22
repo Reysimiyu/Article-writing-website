@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+<html>
+<body>
+{% block content %}
+{% if user.is_authenticated %}
+<h1>Article writing website</h1>
+<div class="form-group">
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{ form.media }}
+
+    <button class="btn btn-success">submit</button>
+</form>
+</div>
+<script>
+    var name = "{{ user.id }}"
+    document.getElementById('authorId').value = name
+</script>
+{% endif %}
+{%endblock%}
+
+
+</body>
+</html>
